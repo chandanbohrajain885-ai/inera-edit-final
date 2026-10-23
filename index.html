@@ -1,0 +1,560 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Inera Edit Flow — AI Photo &amp; Video Studio</title>
+<meta name="description" content="Upload raw photos and videos. Inera Edit Flow edits them automatically into polished, social-media-ready content — free, private, in your browser.">
+<meta name="theme-color" content="#0b0c10">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="logo-mark.png">
+<style>.app{display:none}.load-fail{display:block;max-width:640px;margin:12vh auto;padding:24px;font:16px/1.5 system-ui,sans-serif;color:#111;background:#fff3cd;border:1px solid #e0b100;border-radius:12px}</style>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<svg class="sprite" aria-hidden="true">
+  <defs>
+    <linearGradient id="g-accent" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#a78bfa"/><stop offset="1" stop-color="#38bdf8"/></linearGradient>
+  </defs>
+  <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></symbol>
+  <symbol id="i-image" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="3" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="9" cy="10" r="2" fill="currentColor"/><path d="m4 18 5-5 4 4 3-3 4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></symbol>
+  <symbol id="i-video" viewBox="0 0 24 24"><rect x="2.5" y="5" width="14" height="14" rx="3" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="m16.5 10 5-3v10l-5-3z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></symbol>
+  <symbol id="i-i2v" viewBox="0 0 24 24"><rect x="2.5" y="3" width="10" height="8" rx="2" fill="none" stroke="currentColor" stroke-width="1.7"/><rect x="5.5" y="7" width="10" height="8" rx="2" fill="#15161d" stroke="currentColor" stroke-width="1.7"/><circle cx="17" cy="17" r="5" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="m15.8 14.8 3.4 2.2-3.4 2.2z" fill="currentColor"/></symbol>
+  <symbol id="i-v2i" viewBox="0 0 24 24"><rect x="2.5" y="3" width="12" height="9" rx="2" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="m7 5.6 3.6 1.9L7 9.4z" fill="currentColor"/><rect x="11" y="13" width="4.5" height="4.5" rx="1" fill="none" stroke="currentColor" stroke-width="1.6"/><rect x="17" y="13" width="4.5" height="4.5" rx="1" fill="none" stroke="currentColor" stroke-width="1.6"/><rect x="11" y="18.5" width="4.5" height="3" rx="1" fill="currentColor"/><rect x="17" y="18.5" width="4.5" height="3" rx="1" fill="currentColor"/></symbol>
+  <symbol id="i-projects" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 7.5V12l3 2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+  <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 4v11m0 0-4.5-4.5M12 15l4.5-4.5M4.5 19.5h15" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-settings" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M19.4 15a1.6 1.6 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.6 1.6 0 0 0-1.8-.3 1.6 1.6 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.6 1.6 0 0 0-1-1.5 1.6 1.6 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.6 1.6 0 0 0 .3-1.8 1.6 1.6 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.6 1.6 0 0 0 1.5-1 1.6 1.6 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.6 1.6 0 0 0 1.8.3H9a1.6 1.6 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.6 1.6 0 0 0 1 1.5 1.6 1.6 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.6 1.6 0 0 0-.3 1.8V9a1.6 1.6 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.6 1.6 0 0 0-1.5 1z" fill="none" stroke="currentColor" stroke-width="1.5"/></symbol>
+  <symbol id="i-help" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M9.5 9.3a2.6 2.6 0 0 1 5 .9c0 1.8-2.5 2.2-2.5 3.8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="12" cy="17.2" r="1.1" fill="currentColor"/></symbol>
+  <symbol id="i-upload" viewBox="0 0 24 24"><path d="M7 18.5a4.5 4.5 0 0 1-.6-9A6 6 0 0 1 18 8.6a4 4 0 0 1-.5 9.9M12 12v8m0-8-3 3m3-3 3 3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 2.5 13.9 9 20.5 11 13.9 13 12 19.5 10.1 13 3.5 11 10.1 9z" fill="currentColor"/><path d="M19 15.5l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8z" fill="currentColor" opacity=".7"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+  <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4.5 7h15M9.5 7V4.5h5V7m-8 0 .8 12.2a1.5 1.5 0 0 0 1.5 1.3h6.4a1.5 1.5 0 0 0 1.5-1.3L17.5 7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></symbol>
+  <symbol id="i-undo" viewBox="0 0 24 24"><path d="M9 7 4.5 11.5 9 16M5 11.5h9.5a5 5 0 0 1 0 10H11" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20 11a8 8 0 0 0-14.6-4.5M4 4.5v3.8h3.8M4 13a8 8 0 0 0 14.6 4.5M20 19.5v-3.8h-3.8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-zip" viewBox="0 0 24 24"><path d="M6 3h8l4 4v13a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M10 3v2h2v2h-2v2h2v2h-2v3" fill="none" stroke="currentColor" stroke-width="1.6"/><rect x="9.2" y="14" width="3.6" height="3.4" rx="1" fill="none" stroke="currentColor" stroke-width="1.5"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></symbol>
+  <symbol id="i-music" viewBox="0 0 24 24"><path d="M9 18V5.5l11-2.5v12.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="6.5" cy="18" r="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="17.5" cy="15.5" r="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/></symbol>
+  <symbol id="i-up" viewBox="0 0 24 24"><path d="m6 14 6-6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-down" viewBox="0 0 24 24"><path d="m6 10 6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3 4.5 6v5.5c0 4.6 3.2 8.2 7.5 9.5 4.3-1.3 7.5-4.9 7.5-9.5V6z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="m8.8 12 2.2 2.2 4.3-4.4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-5-5 5 5-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-avatar" viewBox="0 0 24 24"><circle cx="12" cy="8.5" r="4" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M4 20.5c1.2-3.7 4.2-5.5 8-5.5s6.8 1.8 8 5.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M10.3 9.6c.9.7 2.5.7 3.4 0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></symbol>
+  <symbol id="i-mic" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+  <symbol id="i-back" viewBox="0 0 24 24"><path d="M19 12H5m5-5-5 5 5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+</svg>
+
+<div class="load-fail" id="loadFail"><b>Inera Edit Flow could not load all of its files.</b><br>The page is online, but some files are missing on the server (usually an incomplete GitHub upload). Upload <b>every</b> file from the zip to the <b>root</b> of the repository, let Vercel redeploy, then reload. Open <a href="self-test.html">self-test.html</a> to see exactly which files are missing.</div>
+<div class="load-fail js" role="alert"><b>Some app files did not load</b> — buttons will not work. Usually a file is missing from the GitHub upload or the browser is very old. Open <a href="self-test.html">self-test.html</a> to see which file.</div>
+<div class="app" id="app">
+  <aside class="sidebar" id="sidebar" aria-label="Main navigation">
+    <a class="brand" href="#/home" aria-label="Inera Edit Flow home">
+      <img src="logo-mark.png" alt="Inera logo" class="brand-mark" width="40" height="40">
+      <span class="brand-text"><b>Inera</b> Edit Flow<small>AI Creative Studio</small></span>
+    </a>
+    <nav class="nav">
+      <a href="#/home" data-nav="home"><svg class="ic"><use href="#i-home"/></svg><span>Home</span></a>
+      <div class="nav-label">Editing modes</div>
+      <a href="#/image" data-nav="image"><svg class="ic"><use href="#i-image"/></svg><span>Image Editor</span><em class="nav-dot" data-dot="image"></em></a>
+      <a href="#/video" data-nav="video"><svg class="ic"><use href="#i-video"/></svg><span>Video Editor</span><em class="nav-dot" data-dot="video"></em></a>
+      <a href="#/i2v" data-nav="i2v"><svg class="ic"><use href="#i-i2v"/></svg><span>Image to Video</span><em class="nav-dot" data-dot="i2v"></em></a>
+      <a href="#/v2i" data-nav="v2i"><svg class="ic"><use href="#i-v2i"/></svg><span>Video to Images</span><em class="nav-dot" data-dot="v2i"></em></a>
+      <a href="#/avatar" data-nav="avatar"><svg class="ic"><use href="#i-avatar"/></svg><span>Avatar Studio</span><em class="nav-dot" data-dot="avatar"></em></a>
+      <div class="nav-label">Library</div>
+      <a href="#/projects" data-nav="projects"><svg class="ic"><use href="#i-projects"/></svg><span>Recent Projects</span></a>
+      <a href="#/downloads" data-nav="downloads"><svg class="ic"><use href="#i-download"/></svg><span>Downloads</span></a>
+      <a href="#/settings" data-nav="settings"><svg class="ic"><use href="#i-settings"/></svg><span>Settings</span></a>
+      <a href="#/help" data-nav="help"><svg class="ic"><use href="#i-help"/></svg><span>Help</span></a>
+    </nav>
+    <div class="side-foot">
+      <svg class="ic"><use href="#i-shield"/></svg>
+      <span>Free &amp; private. Your media is processed on this device and never uploaded.</span>
+    </div>
+  </aside>
+  <div class="scrim" id="scrim"></div>
+
+  <div class="main">
+    <header class="topbar">
+      <button class="icon-btn menu-btn" id="menuBtn" aria-label="Open menu"><svg class="ic"><use href="#i-menu"/></svg></button>
+      <h1 class="page-title" id="pageTitle">Home</h1>
+      <div class="top-right">
+        <span class="job-pill" id="jobPill" hidden><span class="spinner"></span><span id="jobPillText">Working…</span></span>
+        <span class="free-pill"><svg class="ic"><use href="#i-spark"/></svg>Free · No sign-up</span>
+      </div>
+    </header>
+
+    <main class="views">
+      <!-- ================= HOME ================= -->
+      <section class="view" data-view="home">
+        <div class="hero">
+          <div class="hero-copy">
+            <span class="eyebrow"><svg class="ic"><use href="#i-spark"/></svg> AI editing, no skills needed</span>
+            <h2>Upload raw media.<br><span class="grad-text">AI does the editing.</span></h2>
+            <p>Drop in your photos or videos and Inera Edit Flow automatically enhances, cuts, grades, adds original music and exports polished, social-ready content. No prompts, no timelines, no song hunting.</p>
+            <div class="hero-points">
+              <span><svg class="ic"><use href="#i-check"/></svg>Automatic decisions</span>
+              <span><svg class="ic"><use href="#i-check"/></svg>Original royalty-free music</span>
+              <span><svg class="ic"><use href="#i-check"/></svg>Runs privately on your device</span>
+            </div>
+          </div>
+          <div class="hero-drop dropzone" id="homeDrop" tabindex="0" role="button" aria-label="Upload photos or a video">
+            <img src="logo.png" alt="Inera" class="hero-logo" width="120" height="124">
+            <svg class="ic big"><use href="#i-upload"/></svg>
+            <strong>Drop photos or a video here</strong>
+            <span>or <u>browse files</u> — we'll suggest the right mode</span>
+            <small>JPG · PNG · WebP up to 40 MB &nbsp;•&nbsp; MP4 · MOV · WebM — up to 3 hours in desktop Chrome / Edge</small>
+            <input type="file" id="homeInput" accept="image/jpeg,image/png,image/webp,video/mp4,video/quicktime,video/webm,.jpg,.jpeg,.png,.webp,.mp4,.mov,.webm" multiple hidden>
+          </div>
+        </div>
+
+        <div class="section-head"><h3>Choose an editing mode</h3><p>Four independent workflows. Each has its own processing and output.</p></div>
+        <div class="mode-grid">
+          <article class="mode-card" data-mode="image">
+            <div class="mode-icon m1"><svg class="ic"><use href="#i-image"/></svg></div>
+            <h4>Raw Image to Edited Image</h4>
+            <p>Recognises the photo type and automatically fixes exposure, colour, white balance, clarity and noise with a natural, polished grade.</p>
+            <div class="mini-drop dropzone" data-drop="image" tabindex="0" role="button" aria-label="Upload photos for enhancement"><svg class="ic"><use href="#i-upload"/></svg><span>Drop photos or <u>browse</u></span></div>
+            <small class="formats">JPG · JPEG · PNG · WebP · up to 40 MB each · 20 per batch</small>
+            <button class="btn primary" data-open="image"><svg class="ic"><use href="#i-spark"/></svg>Enhance Photos</button>
+          </article>
+          <article class="mode-card featured" data-mode="video">
+            <span class="badge">Most powerful</span>
+            <div class="mode-icon m2"><svg class="ic"><use href="#i-video"/></svg></div>
+            <h4>Raw Video to Edited Video</h4>
+            <p>Listens to what you say: writes captions, cuts retakes and silences, shows visuals for the topics you mention, adds music, sound effects and a hook.</p>
+            <div class="mini-drop dropzone" data-drop="video" tabindex="0" role="button" aria-label="Upload a video to auto edit"><svg class="ic"><use href="#i-upload"/></svg><span>Drop a video or <u>browse</u></span></div>
+            <small class="formats">MP4 · MOV · WebM · 1 sec to 3 hours (desktop Chrome / Edge)</small>
+            <button class="btn primary" data-open="video"><svg class="ic"><use href="#i-spark"/></svg>Auto Edit Video</button>
+          </article>
+          <article class="mode-card" data-mode="i2v">
+            <div class="mode-icon m3"><svg class="ic"><use href="#i-i2v"/></svg></div>
+            <h4>Image to Video</h4>
+            <p>Turns one or many photos into a cinematic animated slideshow with camera moves, beat-timed transitions and original music.</p>
+            <div class="mini-drop dropzone" data-drop="i2v" tabindex="0" role="button" aria-label="Upload photos to make a video"><svg class="ic"><use href="#i-upload"/></svg><span>Drop photos or <u>browse</u></span></div>
+            <small class="formats">JPG · JPEG · PNG · WebP · 1–30 photos</small>
+            <button class="btn primary" data-open="i2v"><svg class="ic"><use href="#i-spark"/></svg>Create Video</button>
+          </article>
+          <article class="mode-card" data-mode="v2i">
+            <div class="mode-icon m4"><svg class="ic"><use href="#i-v2i"/></svg></div>
+            <h4>Video to Images</h4>
+            <p>Finds the sharpest, best-composed, non-duplicate moments in a video and exports them as high-quality stills or a ZIP.</p>
+            <div class="mini-drop dropzone" data-drop="v2i" tabindex="0" role="button" aria-label="Upload a video to extract images"><svg class="ic"><use href="#i-upload"/></svg><span>Drop a video or <u>browse</u></span></div>
+            <small class="formats">MP4 · MOV · WebM · up to 3 hours (desktop Chrome / Edge)</small>
+            <button class="btn primary" data-open="v2i"><svg class="ic"><use href="#i-spark"/></svg>Extract Best Frames</button>
+          </article>
+        </div>
+
+        <article class="mode-card wide-card" data-mode="avatar">
+          <div class="mode-icon m5"><svg class="ic"><use href="#i-avatar"/></svg></div>
+          <div class="wide-copy"><h4>Avatar Studio — script to talking presenter</h4>
+          <p>Type a script (natural AI voice) or record your own voice. A 3D presenter speaks it with lip-sync, blinks, head nods, hand gestures and emotions — then the editor adds captions, visuals and music. Real-face lip-sync of your own face via a free Colab notebook.</p></div>
+          <button class="btn primary" data-open="avatar"><svg class="ic"><use href="#i-spark"/></svg>Open Avatar Studio</button>
+        </article>
+
+        <div class="section-head row"><div><h3>Recent projects</h3><p>Status of your jobs and quick access to finished results.</p></div><a class="btn ghost sm" href="#/projects">View all <svg class="ic"><use href="#i-arrow"/></svg></a></div>
+        <div class="recent-strip" id="recentStrip"></div>
+      </section>
+
+      <!-- ================= MODE 1: IMAGE ================= -->
+      <section class="view" data-view="image">
+        <div class="ws-head">
+          <div class="mode-icon m1 sm"><svg class="ic"><use href="#i-image"/></svg></div>
+          <div><h2>Raw Image to Edited Image</h2><p>Upload photos and press Auto Enhance. The AI recognises each photo and picks its own edit.</p></div>
+        </div>
+        <div class="ws-grid">
+          <div class="panel">
+            <div class="dropzone ws-drop" id="imgDrop" tabindex="0" role="button" aria-label="Add photos">
+              <svg class="ic big"><use href="#i-upload"/></svg><strong>Drop photos here or <u>browse</u></strong>
+              <small>JPG, JPEG, PNG, WebP · max 40 MB and 60 MP each · up to 20 photos · processed at up to 16 MP</small>
+              <input type="file" id="imgInput" accept="image/jpeg,image/png,image/webp,.jpg,.jpeg,.png,.webp" multiple hidden>
+            </div>
+            <div class="file-list" id="imgList"></div>
+            <details class="customize" id="imgCustomize">
+              <summary><span>Customize (optional)</span><small>Everything is automatic by default</small></summary>
+              <div class="form-grid">
+                <label>Editing style<select id="imgStyle"><option value="auto">Auto — chosen per photo</option></select></label>
+                <label>Crop / aspect<select id="imgAspect"><option value="original">Original (no crop)</option><option value="1:1">Square 1:1</option><option value="4:5">Portrait 4:5 (Instagram)</option><option value="9:16">Story 9:16</option><option value="16:9">Landscape 16:9</option></select></label>
+                <label class="span2">Edit strength <output id="imgIntensityOut">100%</output><input type="range" id="imgIntensity" min="40" max="150" value="100"></label>
+              </div>
+            </details>
+            <div class="prompt-box">
+              <label for="imgPrompt"><svg class="ic"><use href="#i-spark"/></svg> Tell the AI what you want <small>(optional — leave empty for a fully automatic edit)</small></label>
+              <textarea id="imgPrompt" rows="3" maxlength="600" placeholder="e.g. warmer and brighter · remove background · white background for product · YouTube thumbnail with title &quot;Best Gadget 2026&quot;"></textarea>
+              <div class="prompt-fb" id="imgPromptFb" aria-live="polite"></div>
+            </div>
+            <div class="actions">
+              <button class="btn primary lg" id="imgRun" disabled><svg class="ic"><use href="#i-spark"/></svg>Auto Enhance</button>
+              <button class="btn ghost" id="imgClear" disabled>Clear</button>
+            </div>
+            <div class="stage-box" id="imgStages" hidden></div>
+          </div>
+          <div class="panel result-panel" id="imgResultPanel">
+            <div class="empty-state" id="imgEmpty"><svg class="ic big"><use href="#i-image"/></svg><p>Your enhanced photos will appear here with a before/after slider.</p></div>
+            <div id="imgEditor" hidden>
+              <div class="compare" id="imgCompare">
+                <img id="cmpAfter" alt="Edited photo">
+                <div class="cmp-before" id="cmpBeforeWrap"><img id="cmpBefore" alt="Original photo"></div>
+                <div class="cmp-handle" id="cmpHandle"><span></span></div>
+                <span class="cmp-tag left">Before</span><span class="cmp-tag right">After</span>
+                <input type="range" class="cmp-range" id="cmpRange" min="0" max="100" value="50" aria-label="Before and after comparison">
+              </div>
+              <div class="ai-info" id="imgInfo"></div>
+              <div class="versions" id="imgVersions"></div>
+              <div class="toolbar">
+                <button class="btn ghost sm" id="imgUndo"><svg class="ic"><use href="#i-undo"/></svg>Undo</button>
+                <button class="btn ghost sm" id="imgRestore">Restore original</button>
+                <button class="btn ghost sm" id="imgRegen"><svg class="ic"><use href="#i-refresh"/></svg>Regenerate</button>
+                <span class="grow"></span>
+                <select id="imgFormat" class="sm" aria-label="Download format"><option value="image/jpeg">JPEG (high quality)</option><option value="image/png">PNG (lossless)</option><option value="image/webp">WebP</option></select>
+                <button class="btn primary sm" id="imgDownload"><svg class="ic"><use href="#i-download"/></svg>Download</button>
+              </div>
+              <div class="filmstrip" id="imgStrip"></div>
+              <div class="actions end"><button class="btn ghost sm" id="imgZip"><svg class="ic"><use href="#i-zip"/></svg>Download all as ZIP</button></div>
+              <div class="panel inset design-box" id="imgDesign">
+                <h3><svg class="ic"><use href="#i-spark"/></svg> Background &amp; social designs</h3>
+                <p>AI subject cut-out (runs on this device). Works best on people, products, pets and single objects.</p>
+                <div class="form-grid">
+                  <label>Background<select id="dsBg"></select></label>
+                  <label id="dsColorWrap" hidden>Colour<input type="color" id="dsColor" value="#1e1b4b"></label>
+                  <label class="span2 file-pick" id="dsBgImgWrap" hidden>Background image<input type="file" id="dsBgImg" accept="image/jpeg,image/png,image/webp"></label>
+                </div>
+                <div class="actions"><button class="btn ghost sm" id="dsApply"><svg class="ic"><use href="#i-spark"/></svg>Apply background</button></div>
+                <div class="form-sec">Thumbnail / post maker</div>
+                <div class="form-grid">
+                  <label>Design<select id="dsLayout"><option value="youtube">YouTube thumbnail 1280×720</option><option value="post">Instagram post 1080×1350</option><option value="story">Story / Reel cover 1080×1920</option></select></label>
+                  <label>Accent colour<input type="color" id="dsAccent" value="#facc15"></label>
+                  <label class="span2">Headline<input type="text" id="dsTitle" maxlength="70" placeholder="e.g. This changed everything"></label>
+                  <label class="span2">Small line (optional)<input type="text" id="dsSub" maxlength="50" placeholder="e.g. @yourchannel"></label>
+                </div>
+                <div class="actions"><button class="btn ghost sm" id="dsMake"><svg class="ic"><use href="#i-spark"/></svg>Make design</button></div>
+                <div class="canvas-wrap" id="dsWrap" hidden><img class="design-out" id="dsOut" alt="Design result"></div>
+                <div class="toolbar" id="dsBar" hidden><span class="tag" id="dsInfo"></span><span class="grow"></span><button class="btn primary sm" id="dsDl"><svg class="ic"><use href="#i-download"/></svg>Download</button></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= MODE 2: VIDEO ================= -->
+      <section class="view" data-view="video">
+        <div class="ws-head">
+          <div class="mode-icon m2 sm"><svg class="ic"><use href="#i-video"/></svg></div>
+          <div><h2>Raw Video to Edited Video</h2><p>Upload → Auto Edit → download. The AI watches and listens: it writes captions from your speech, cuts retakes and silences, adds topic visuals, music and sound design.</p></div>
+        </div>
+        <div class="ws-grid">
+          <div class="panel">
+            <div class="dropzone ws-drop" id="vidDrop" tabindex="0" role="button" aria-label="Choose a video">
+              <svg class="ic big"><use href="#i-upload"/></svg><strong>Drop a video here or <u>browse</u></strong>
+              <small id="vidLimitText">MP4, MOV, WebM · checking what this browser supports…</small>
+              <input type="file" id="vidInput" accept="video/mp4,video/quicktime,video/webm,.mp4,.mov,.webm" hidden>
+            </div>
+            <div class="media-info" id="vidInfo" hidden></div>
+            <details class="customize" id="vidCustomize">
+              <summary><span>Customize Edit (optional)</span><small>Sensible automatic defaults</small></summary>
+              <div class="form-grid">
+                <div class="form-sec span2">Edit</div>
+                <label>Editing style<select id="vidStyle"></select></label>
+                <label>Video length<select id="vidLength"><option value="auto">Auto (keep all good content)</option><option value="15">15 seconds</option><option value="30">30 seconds</option><option value="60">60 seconds</option><option value="90">90 seconds</option><option value="180">3 minutes</option><option value="600">10 minutes</option></select></label>
+                <label>Aspect ratio<select id="vidAspect"><option value="auto">Auto (match source)</option><option value="9:16">9:16 Reels / Shorts</option><option value="1:1">1:1 Square</option><option value="4:5">4:5 Feed</option><option value="16:9">16:9 YouTube</option></select></label>
+                <label>Pacing<select id="vidPacing"><option value="auto">Auto (tight, natural)</option><option value="tight">Very tight (fast creator style)</option><option value="relaxed">Relaxed</option><option value="keep">Keep all pauses</option></select></label>
+                <label>Remove retakes &amp; fillers<select id="vidRetakes"><option value="on">On (cut repeated takes, um/uh)</option><option value="off">Off</option></select></label>
+                <label>Hook opening<select id="vidHook"><option value="auto">Auto</option><option value="on">Always</option><option value="off">Off</option></select></label>
+                <label>Editing intensity<select id="vidIntensity"><option value="auto">Auto</option><option value="light">Light</option><option value="balanced">Balanced</option><option value="bold">Bold</option></select></label>
+                <label>Transitions<select id="vidTrans"><option value="auto">Auto</option><option value="minimal">Minimal</option><option value="dynamic">Dynamic</option></select></label>
+                <label>Stabilisation<select id="vidStab"><option value="auto">Auto (when shaky)</option><option value="on">On</option><option value="off">Off</option></select></label>
+                <div class="form-sec span2">Captions &amp; graphics</div>
+                <label>Captions<select id="vidCaptions"><option value="auto">Auto (bold for vertical, clean for 16:9)</option><option value="creator">Bold creator captions</option><option value="clean">Clean subtitles</option><option value="off">Off</option></select></label>
+                <label>Caption letters<select id="vidCapCase"><option value="upper">UPPERCASE</option><option value="normal">Normal case</option></select></label>
+                <label>Topic visuals (B-roll)<select id="vidBroll"><option value="auto">Auto</option><option value="more">More</option><option value="less">Less</option><option value="off">Off</option></select></label>
+                <label>Free web images<select id="vidOnline"><option value="on">On (Wikimedia / Openverse, CC0 · PD · CC BY)</option><option value="off">Off (offline illustrations only)</option></select></label>
+                <label>Graphics<select id="vidGraphics"><option value="auto">Auto (numbers, subscribe button, chapters)</option><option value="off">Off</option></select></label>
+                <label>Sound effects<select id="vidSfx"><option value="auto">Auto</option><option value="off">Off</option></select></label>
+                <label>Speaker name (lower third)<input type="text" id="vidSpeaker" maxlength="40" placeholder="e.g. Priya Sharma"></label>
+                <label>Speaker role<input type="text" id="vidRole" maxlength="50" placeholder="e.g. Founder, Inera"></label>
+                <label class="span2">On-screen title (optional)<input type="text" id="vidTitle" maxlength="80" placeholder="e.g. 3 Days in Goa"></label>
+                <label class="span2 file-pick">Your own B-roll clips/photos (optional — name files by topic, e.g. <i>pizza-oven.mp4</i>)<input type="file" id="vidLibrary" accept="image/jpeg,image/png,image/webp,video/mp4,video/webm,video/quicktime" multiple></label>
+                <div class="form-sec span2">Audio &amp; speech</div>
+                <label>Music intensity<select id="vidMusic"><option value="auto">Auto</option><option value="low">Low</option><option value="medium">Medium</option><option value="high">High</option><option value="off">Off</option></select></label>
+                <label>Original audio<select id="vidOrig"><option value="auto">Auto (keep speech &amp; key sounds)</option><option value="all">Keep all original audio</option><option value="speech">Keep speech only</option><option value="none">Mute original audio</option></select></label>
+                <label>Speech language<select id="vidLang"><option value="">Auto-detect</option><option value="en">English</option><option value="hi">Hindi</option><option value="es">Spanish</option><option value="fr">French</option><option value="de">German</option><option value="pt">Portuguese</option><option value="it">Italian</option><option value="ar">Arabic</option><option value="ja">Japanese</option><option value="ko">Korean</option><option value="zh">Chinese</option><option value="ru">Russian</option><option value="bn">Bengali</option><option value="ta">Tamil</option><option value="te">Telugu</option><option value="mr">Marathi</option><option value="gu">Gujarati</option><option value="ur">Urdu</option><option value="id">Indonesian</option><option value="tr">Turkish</option></select></label>
+                <label>Speech recognition<select id="vidAsr"><option value="auto">Auto — fast for English, accurate for other languages (uses your graphics card when possible)</option><option value="base">Always accurate (Whisper base — slower)</option><option value="tiny">Always fast (Whisper tiny)</option><option value="off">Off (no captions / speech editing)</option></select></label>
+                <label>Export quality<select id="vidQuality"><option value="high">High</option><option value="balanced">Balanced</option><option value="small">Smaller file</option></select></label>
+                <label>Export resolution<select id="vidRes"><option value="1080">1080p (best)</option><option value="720">720p (about 2× faster)</option></select></label>
+              </div>
+            </details>
+            <div class="prompt-box">
+              <label for="vidPrompt"><svg class="ic"><use href="#i-spark"/></svg> Tell the AI what you want <small>(optional — leave empty for a fully automatic edit)</small></label>
+              <textarea id="vidPrompt" rows="3" maxlength="600" placeholder="e.g. Make a 45-second Reel, viral style with a hook, big yellow captions at the top, more topic images, calm lofi music, warm colours, title &quot;3 Pizza Secrets&quot;"></textarea>
+              <div class="prompt-fb" id="vidPromptFb" aria-live="polite"></div>
+            </div>
+            <div class="actions">
+              <button class="btn primary lg" id="vidRun" disabled><svg class="ic"><use href="#i-spark"/></svg>Auto Edit</button>
+              <button class="btn ghost" id="vidCancel" hidden>Cancel</button>
+            </div>
+            <p class="note" id="vidNote"><svg class="ic"><use href="#i-help"/></svg><span>Speech recognition and rendering run on your device. The first run downloads the free speech model once (~160 MB) and caches it. Keep this tab open until the edit is finished.</span></p>
+          </div>
+          <div class="panel result-panel">
+            <div class="stage-box" id="vidStages" hidden></div>
+            <div class="render-stage" id="vidRenderWrap" hidden><canvas id="vidCanvas"></canvas><span class="live-tag">Rendering</span></div>
+            <div class="empty-state" id="vidEmpty"><svg class="ic big"><use href="#i-video"/></svg><p>Your edited video will appear here.</p></div>
+            <div id="vidResult" hidden></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= MODE 3: IMAGE TO VIDEO ================= -->
+      <section class="view" data-view="i2v">
+        <div class="ws-head">
+          <div class="mode-icon m3 sm"><svg class="ic"><use href="#i-i2v"/></svg></div>
+          <div><h2>Image to Video</h2><p>Upload one or more photos. The AI orders them, plans camera moves, times transitions to original music and renders a video.</p></div>
+        </div>
+        <div class="method-note"><svg class="ic"><use href="#i-help"/></svg><div><b>Method used: animated slideshow.</b> Motion is created with AI-planned camera pans, zooms and transitions on your real photos. It is <b>not</b> generative AI motion (no free model can run reliably inside a browser), so faces and details are never distorted or invented.</div></div>
+        <div class="ws-grid">
+          <div class="panel">
+            <div class="dropzone ws-drop" id="i2vDrop" tabindex="0" role="button" aria-label="Add photos">
+              <svg class="ic big"><use href="#i-upload"/></svg><strong>Drop photos here or <u>browse</u></strong>
+              <small>JPG, JPEG, PNG, WebP · 1–30 photos · max 40 MB each</small>
+              <input type="file" id="i2vInput" accept="image/jpeg,image/png,image/webp,.jpg,.jpeg,.png,.webp" multiple hidden>
+            </div>
+            <div class="sort-list" id="i2vList"></div>
+            <details class="customize">
+              <summary><span>Customize (optional)</span><small>Order, timing and music are automatic</small></summary>
+              <div class="form-grid">
+                <label>Aspect ratio<select id="i2vAspect"><option value="auto">Auto (from photos)</option><option value="9:16">9:16 Reels / Shorts</option><option value="1:1">1:1 Square</option><option value="4:5">4:5 Feed</option><option value="16:9">16:9 YouTube</option></select></label>
+                <label>Pace<select id="i2vPace"><option value="auto">Auto</option><option value="slow">Slow</option><option value="fast">Fast</option></select></label>
+                <label>Music mood<select id="i2vMood"><option value="auto">Auto</option><option value="cinematic">Cinematic</option><option value="upbeat">Upbeat</option><option value="calm">Calm</option><option value="energetic">Energetic</option></select></label>
+                <label>Music<select id="i2vMusic"><option value="on">On</option><option value="low">Low</option><option value="off">Off</option></select></label>
+                <label>Photo order<select id="i2vOrder"><option value="auto">Auto (AI ordering)</option><option value="manual">Keep my order</option></select></label>
+                <label>Transitions<select id="i2vTrans"><option value="auto">Auto</option><option value="minimal">Minimal (crossfades)</option></select></label>
+                <label class="span2">On-screen title (optional)<input type="text" id="i2vTitle" maxlength="80" placeholder="e.g. Our Summer"></label>
+              </div>
+            </details>
+            <div class="prompt-box">
+              <label for="i2vPrompt"><svg class="ic"><use href="#i-spark"/></svg> Tell the AI what you want <small>(optional — leave empty for a fully automatic edit)</small></label>
+              <textarea id="i2vPrompt" rows="3" maxlength="600" placeholder="e.g. 20-second calm video, black and white, square"></textarea>
+              <div class="prompt-fb" id="i2vPromptFb" aria-live="polite"></div>
+            </div>
+            <div class="actions">
+              <button class="btn primary lg" id="i2vRun" disabled><svg class="ic"><use href="#i-spark"/></svg>Create Video</button>
+              <button class="btn ghost" id="i2vCancel" hidden>Cancel</button>
+              <button class="btn ghost" id="i2vClear" disabled>Clear</button>
+            </div>
+          </div>
+          <div class="panel result-panel">
+            <div class="stage-box" id="i2vStages" hidden></div>
+            <div class="render-stage" id="i2vRenderWrap" hidden><canvas id="i2vCanvas"></canvas><span class="live-tag">Live render</span></div>
+            <div class="empty-state" id="i2vEmpty"><svg class="ic big"><use href="#i-i2v"/></svg><p>Your video will appear here.</p></div>
+            <div id="i2vResult" hidden></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= MODE 4: VIDEO TO IMAGES ================= -->
+      <section class="view" data-view="v2i">
+        <div class="ws-head">
+          <div class="mode-icon m4 sm"><svg class="ic"><use href="#i-v2i"/></svg></div>
+          <div><h2>Video to Images</h2><p>Upload a video. The AI scans every scene and returns its best, sharpest, non-duplicate moments.</p></div>
+        </div>
+        <div class="ws-grid">
+          <div class="panel">
+            <div class="dropzone ws-drop" id="v2iDrop" tabindex="0" role="button" aria-label="Choose a video">
+              <svg class="ic big"><use href="#i-upload"/></svg><strong>Drop a video here or <u>browse</u></strong>
+              <small id="v2iLimitText">MP4, MOV, WebM · max 400 MB · max 5 minutes (desktop Chrome / Edge: up to 3 hours)</small>
+              <input type="file" id="v2iInput" accept="video/mp4,video/quicktime,video/webm,.mp4,.mov,.webm" hidden>
+            </div>
+            <div class="media-info" id="v2iInfo" hidden></div>
+            <details class="customize">
+              <summary><span>Customize (optional)</span><small>Best-moments mode is automatic</small></summary>
+              <div class="form-grid">
+                <label class="span2">Extraction mode<select id="v2iMode"></select></label>
+                <label>Number of images<select id="v2iCount"><option value="0">Auto</option><option value="6">6</option><option value="10">10</option><option value="16">16</option><option value="24">24</option><option value="40">40</option></select></label>
+                <label>Resolution<select id="v2iRes"><option value="original">Original (no upscaling)</option><option value="1920">Max 1920 px</option><option value="1280">Max 1280 px</option><option value="720">Max 720 px</option></select></label>
+                <label>Format<select id="v2iFormat"><option value="image/jpeg">JPEG (high quality)</option><option value="image/png">PNG (lossless)</option><option value="image/webp">WebP</option></select></label>
+                <label>AI enhancement<select id="v2iEnhance"><option value="off">Off — keep original look</option><option value="on">On — brightness, sharpness, noise, colour</option></select></label>
+                <label class="span2" id="v2iTsWrap" hidden>Timestamps (comma separated)<input type="text" id="v2iTs" placeholder="e.g. 0:05, 0:12.5, 1:03"></label>
+                <label class="span2" id="v2iIntWrap" hidden>Interval (seconds)<input type="number" id="v2iInterval" min="0.2" max="60" step="0.1" value="2"></label>
+                <label class="span2 check"><input type="checkbox" id="v2iBlurry"> Include blurred / near-duplicate frames</label>
+              </div>
+            </details>
+            <div class="actions">
+              <button class="btn primary lg" id="v2iRun" disabled><svg class="ic"><use href="#i-spark"/></svg>Extract Best Frames</button>
+              <button class="btn ghost" id="v2iCancel" hidden>Cancel</button>
+            </div>
+          </div>
+          <div class="panel result-panel">
+            <div class="stage-box" id="v2iStages" hidden></div>
+            <div class="empty-state" id="v2iEmpty"><svg class="ic big"><use href="#i-v2i"/></svg><p>Extracted images will appear here in a gallery.</p></div>
+            <div id="v2iResult" hidden>
+              <div class="ai-info" id="v2iReport"></div>
+              <div class="toolbar">
+                <label class="check"><input type="checkbox" id="v2iAll" checked> Select all</label>
+                <span class="grow"></span>
+                <button class="btn ghost sm" id="v2iZipSel"><svg class="ic"><use href="#i-zip"/></svg>Download selected</button>
+                <button class="btn primary sm" id="v2iZipAll"><svg class="ic"><use href="#i-zip"/></svg>Download All as ZIP</button>
+              </div>
+              <div class="gallery" id="v2iGallery"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= AVATAR STUDIO ================= -->
+      <section class="view" data-view="avatar">
+        <div class="ws-head">
+          <div class="mode-icon m5 sm"><svg class="ic"><use href="#i-avatar"/></svg></div>
+          <div><h2>Avatar Studio</h2><p>Script or your voice → a presenter that talks, blinks, nods and gestures → auto-edited with captions, visuals and music.</p></div>
+        </div>
+        <div class="ws-grid">
+          <div class="panel">
+            <div class="seg" id="avSrcSeg" role="tablist">
+              <button class="active" data-src="script" role="tab">Type a script</button>
+              <button data-src="record" role="tab"><svg class="ic"><use href="#i-mic"/></svg>Record my voice</button>
+              <button data-src="upload" role="tab">Upload voice</button>
+            </div>
+            <div class="av-src" data-src="script">
+              <label class="block">Script<textarea id="avScript" rows="7" maxlength="20000" placeholder="Hi! In this video I'll show you three quick ways to make better pizza at home. First, use a very hot oven…"></textarea></label>
+              <div class="form-grid">
+                <label>Voice<select id="avVoice"></select></label>
+                <label>Speed <output id="avSpeedOut">1.0×</output><input type="range" id="avSpeed" min="0.8" max="1.25" step="0.05" value="1"></label>
+              </div>
+              <small class="muted" id="avScriptInfo">English voices. Words: 0 · about 0:00 of speech.</small>
+            </div>
+            <div class="av-src" data-src="record" hidden>
+              <div class="rec-box">
+                <button class="btn primary" id="avRecBtn"><svg class="ic"><use href="#i-mic"/></svg>Start recording</button>
+                <span class="rec-time" id="avRecTime">0:00</span>
+                <audio id="avRecAudio" controls hidden></audio>
+              </div>
+              <small class="muted">Speak naturally in a quiet room. Your voice is transcribed on this device to drive lip-sync, captions and visuals. Any language Whisper understands works for captions; mouth shapes follow the sound.</small>
+            </div>
+            <div class="av-src" data-src="upload" hidden>
+              <div class="dropzone ws-drop small" id="avAudDrop" tabindex="0" role="button" aria-label="Choose a voice file">
+                <svg class="ic"><use href="#i-upload"/></svg><strong>Drop a voice file or <u>browse</u></strong>
+                <small>WAV, MP3, M4A, OGG, WebM — or a video (its sound is used) · up to 60 minutes</small>
+                <input type="file" id="avAudInput" accept="audio/*,video/mp4,video/webm,video/quicktime,.wav,.mp3,.m4a,.ogg,.opus,.webm,.mp4,.mov" hidden>
+              </div>
+              <div class="muted" id="avAudInfo"></div>
+            </div>
+            <details class="customize" open>
+              <summary><span>Presenter &amp; look</span><small>Defaults look good</small></summary>
+              <div class="form-grid">
+                <label>Presenter<select id="avAvatar"><option value="female">Studio presenter (built-in)</option><option value="custom">My own 3D avatar (.glb)…</option></select></label>
+                <label>Emotion<select id="avMood"><option value="happy">Happy &amp; warm</option><option value="neutral">Neutral / serious</option><option value="love">Friendly &amp; caring</option><option value="sad">Sad / empathetic</option><option value="angry">Intense / passionate</option></select></label>
+                <label>Framing<select id="avView"><option value="upper">Upper body (gestures visible)</option><option value="head">Head &amp; shoulders</option><option value="mid">Waist up</option></select></label>
+                <label>Gestures<select id="avGest"><option value="auto">Auto (on emphasis, lists, questions)</option><option value="off">Off</option></select></label>
+                <label>Background<select id="avBg"></select></label>
+                <label>Format<select id="avAspect"><option value="9:16">9:16 Reels / Shorts</option><option value="16:9">16:9 YouTube</option><option value="1:1">1:1 Square</option></select></label>
+                <label class="span2 file-pick" id="avGlbWrap" hidden>Your avatar (.glb with ARKit + Oculus viseme blend shapes, e.g. made free at Avaturn or with MakeHuman/MPFB)<input type="file" id="avGlb" accept=".glb,model/gltf-binary"></label>
+                <label class="span2 file-pick" id="avBgWrap" hidden>Background image<input type="file" id="avBgImg" accept="image/jpeg,image/png,image/webp"></label>
+                <div class="form-sec span2">After recording</div>
+                <label>Auto-edit<select id="avEdit"><option value="on">Captions, topic visuals, music (recommended)</option><option value="captions">Captions only</option><option value="off">Raw presenter video</option></select></label>
+                <label>Free web images<select id="avOnline"><option value="on">On</option><option value="off">Off</option></select></label>
+                <label class="span2">On-screen title (optional)<input type="text" id="avTitle" maxlength="80" placeholder="e.g. 3 Pizza Secrets"></label>
+              </div>
+            </details>
+            <div class="actions">
+              <button class="btn primary lg" id="avRun"><svg class="ic"><use href="#i-spark"/></svg>Create Avatar Video</button>
+              <button class="btn ghost" id="avCancel" hidden>Cancel</button>
+            </div>
+            <p class="note"><svg class="ic"><use href="#i-help"/></svg><span>Desktop Chrome / Edge render the presenter frame by frame (smooth on any computer, the tab can be in the background). Other browsers record it in real time — keep the tab visible. The voice model (~90 MB) downloads once and is cached.</span></p>
+
+            <div class="panel inset realface">
+              <h3><svg class="ic"><use href="#i-shield"/></svg> Real-face lip-sync (your own face)</h3>
+              <p>For a video of <b>your real face</b> speaking any audio, use the free Colab notebook: it runs LatentSync 1.5 on Google's free T4 GPU. Upload a short clip (or photo) of yourself and your recorded voice (or the voice created here).</p>
+              <ul class="small-list">
+                <li>No API key and no payment — needs only a Google account for Colab.</li>
+                <li>Typical speed on a free T4: about 1–3 minutes per 10 seconds of video.</li>
+                <li>The result is labelled “AI-generated” on screen and in the file.</li>
+                <li><b>Licence:</b> LatentSync is Apache-2.0, but the face detector it downloads (InsightFace) is for non-commercial use — see the notebook.</li>
+                <li><b>Honest status:</b> follows LatentSync's official scripts; not verified on a GPU by the builder.</li>
+              </ul>
+              <label class="check"><input type="checkbox" id="rfConsent"> I will only use my own face and voice, or ones I have written permission to use, and never to deceive or impersonate.</label>
+              <div class="actions">
+                <button class="btn ghost sm" id="rfNotebook" disabled><svg class="ic"><use href="#i-download"/></svg>Download Colab notebook</button>
+                <a class="btn ghost sm" href="https://colab.research.google.com/#create=true" target="_blank" rel="noopener noreferrer">Open Google Colab</a>
+                <button class="btn ghost sm" id="rfVoice" disabled><svg class="ic"><use href="#i-download"/></svg>Download the voice (WAV)</button>
+              </div>
+              <small class="muted">In Colab: File → Upload notebook → choose the downloaded file → Runtime → Run all.</small>
+            </div>
+          </div>
+          <div class="panel result-panel">
+            <div class="stage-box" id="avStages" hidden></div>
+            <div class="av-stage-wrap" id="avStageWrap" hidden><div id="avStage"></div><span class="live-tag">Presenter</span></div>
+            <div class="render-stage" id="avRenderWrap" hidden><canvas id="avCanvas"></canvas><span class="live-tag">Rendering edit</span></div>
+            <div class="empty-state" id="avEmpty"><svg class="ic big"><use href="#i-avatar"/></svg><p>Your presenter video will appear here.</p></div>
+            <div id="avResult" hidden></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= PROJECTS ================= -->
+      <section class="view" data-view="projects">
+        <div class="ws-head"><div class="mode-icon sm"><svg class="ic"><use href="#i-projects"/></svg></div><div><h2>Recent Projects</h2><p>Saved in this browser on this device. No account needed — you are never signed out.</p></div></div>
+        <div class="filters" id="projFilters">
+          <button class="chip active" data-f="all">All</button><button class="chip" data-f="processing">Processing</button><button class="chip" data-f="done">Completed</button><button class="chip" data-f="failed">Failed / interrupted</button>
+        </div>
+        <div class="proj-list" id="projList"></div>
+      </section>
+
+      <!-- ================= DOWNLOADS ================= -->
+      <section class="view" data-view="downloads">
+        <div class="ws-head"><div class="mode-icon sm"><svg class="ic"><use href="#i-download"/></svg></div><div><h2>Downloads</h2><p>Every finished output you have created, ready to download again.</p></div></div>
+        <div class="dl-list" id="dlList"></div>
+      </section>
+
+      <!-- ================= SETTINGS ================= -->
+      <section class="view" data-view="settings">
+        <div class="ws-head"><div class="mode-icon sm"><svg class="ic"><use href="#i-settings"/></svg></div><div><h2>Settings</h2><p>Defaults and storage. Everything is optional.</p></div></div>
+        <div class="settings-grid">
+          <div class="panel">
+            <h3>Export defaults</h3>
+            <div class="form-grid">
+              <label>Default photo format<select id="setFormat"><option value="image/jpeg">JPEG</option><option value="image/png">PNG</option><option value="image/webp">WebP</option></select></label>
+              <label>JPEG / WebP quality <output id="setQualityOut">92</output><input type="range" id="setQuality" min="70" max="100" value="92"></label>
+              <label>Keep project history<select id="setHistory"><option value="10">Last 10 projects</option><option value="30">Last 30 projects</option><option value="60">Last 60 projects</option></select></label>
+            </div>
+          </div>
+          <div class="panel">
+            <h3>Storage on this device</h3>
+            <div class="storage-bar"><span id="storageFill"></span></div>
+            <p class="muted" id="storageText">Checking…</p>
+            <div class="actions">
+              <button class="btn ghost sm" id="setPersist"><svg class="ic"><use href="#i-shield"/></svg>Keep my projects (persistent storage)</button>
+              <button class="btn danger sm" id="setClear"><svg class="ic"><use href="#i-trash"/></svg>Delete all projects</button>
+            </div>
+          </div>
+          <div class="panel span2">
+            <h3>Limits on this device</h3>
+            <div class="limits" id="limitsTable"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= HELP ================= -->
+      <section class="view" data-view="help">
+        <div class="ws-head"><div class="mode-icon sm"><svg class="ic"><use href="#i-help"/></svg></div><div><h2>Help</h2><p>How Inera Edit Flow works — and what it honestly can and cannot do.</p></div></div>
+        <div class="help" id="helpContent"></div>
+      </section>
+    </main>
+  </div>
+</div>
+
+<div class="modal" id="chooser" hidden>
+  <div class="modal-card">
+    <button class="icon-btn modal-x" data-close aria-label="Close"><svg class="ic"><use href="#i-x"/></svg></button>
+    <h3 id="chooserTitle">What would you like to do?</h3>
+    <p class="muted" id="chooserSub"></p>
+    <div class="chooser-opts" id="chooserOpts"></div>
+  </div>
+</div>
+<div class="modal" id="viewer" hidden>
+  <div class="modal-card wide">
+    <button class="icon-btn modal-x" data-close aria-label="Close"><svg class="ic"><use href="#i-x"/></svg></button>
+    <div id="viewerBody"></div>
+  </div>
+</div>
+<div class="toasts" id="toasts" aria-live="polite"></div>
+<noscript><div class="noscript">Inera Edit Flow needs JavaScript enabled.</div></noscript>
+<script type="module" src="app.js"></script>
+</body>
+</html>

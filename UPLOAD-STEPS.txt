@@ -1,0 +1,29 @@
+INERA EDIT FLOW - HOW TO PUT IT ON GITHUB + VERCEL (no errors)
+================================================================
+
+Why your last deploy broke: GitHub's web uploader failed part-way ("size is more / commit failed"),
+so Vercel deployed an incomplete repo -> unstyled page, nothing working.
+
+OPTION A - GitHub Desktop (recommended, never hits size limits)
+  1. Install GitHub Desktop (free): desktop.github.com and sign in.
+  2. File > New repository > name: inera-edit-flow > Create.
+  3. Click "Show in Explorer". Copy ALL files from this zip folder INTO that folder
+     (the files themselves, not the folder that contains them).
+  4. Back in GitHub Desktop: type a summary "first upload" > Commit to main > Publish repository.
+  5. Vercel > Add New > Project > Import "inera-edit-flow" > Framework Preset: Other >
+     leave Build / Output / Install empty > Deploy.
+
+OPTION B - GitHub website, in 3 batches (each batch = one commit)
+  New repository (empty, no README) > "uploading an existing file".
+  Batch 1: all .html .css .js .mjs .json .md .txt .png .ipynb files     > Commit
+  Batch 2: ort-runtime.wasm.dat, u2netp.onnx, facefinder.bin             > Commit
+  Batch 3: avatar-female.glb.dat, headtts-dict-en-us.dat, visual-lexicon.dat, nlu-vocab.dat > Commit
+  Then import into Vercel as in step A5. Every file is under 10 MB.
+
+CHECK BEFORE YOU DEPLOY
+  - The repo's front page lists index.html, app.js, vercel.json ... directly (NOT one folder).
+  - The repo has 70 files.
+AFTER DEPLOY
+  - Open https://YOUR-APP.vercel.app/self-test.html > it lists any missing file by name.
+  - If the site shows 404: Vercel > Settings > Build and Deployment > Root Directory must be empty
+    (or the folder name if your files are inside a folder), Output Directory empty. Redeploy.
